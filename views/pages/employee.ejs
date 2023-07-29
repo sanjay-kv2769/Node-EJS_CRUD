@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Employee Management</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+      integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <%- include('partials/header') %>
+    <!-- Team Section -->
+    <div class="w3-container" style="padding: 128px 16px" id="team">
+      <h3 class="w3-center">THE TEAM</h3>
+      <p class="w3-center w3-large">The ones who runs this company</p>
+      <div class="w3-row-padding w3-grayscale" style="margin-top: 64px">
+        <% data.forEach((employee)=>{ %>
+        <div class="w3-col l3 m6 w3-margin-bottom">
+          <div class="w3-card">
+            <img src="/images/user.jpg" alt="Dan" style="width: 100%" />
+            <div class="w3-container">
+              <h3><%= employee.name %></h3>
+              <p class="w3-opacity"><%= employee.email %></p>
+              <p class="w3-opacity"><%= employee.phone %></p>
+              <p><%= employee.bio %></p>
+              <p>
+                <a
+                  style="text-decoration: none"
+                  href="/api/employee/edit-employee/<%= employee.id %>"
+                >
+                  <button class="w3-button w3-green w3-block">
+                    <i class="fa fa-edit"></i> Edit
+                  </button>
+                </a>
+                <form
+                  action="/api/employee/delete-employee/<%= employee.id %>"
+                method="GET"
+                  >
+                <!-- <form
+                  action="/api/employee/delete-employee/<%= employee.id %>?_method=DELETE"
+                method="post"
+                  >
+                  <input type="hidden" name="_method" value="DELETE"> -->
+                  <button type="submit" value="DELETE" class="w3-button w3-red w3-block">
+                    <i class="fa fa-trash"></i> Delete>
+                  </button>
+                </form>
+              </p>
+            </div>
+          </div>
+        </div>
+        <% }) %>
+        <!-- --------------------------------========================= -->
+      </div>
+    </div>
+    <!-- <%= data %> -->
+    <%- include('partials/footer') %>
+    <script>
+      // Toggle between showing and hiding the sidebar when clicking the menu icon
+      var mySidebar = document.getElementById('mySidebar');
+
+      function w3_open() {
+        if (mySidebar.style.display === 'block') {
+          mySidebar.style.display = 'none';
+        } else {
+          mySidebar.style.display = 'block';
+        }
+      }
+
+      // Close the sidebar with the close button
+      function w3_close() {
+        mySidebar.style.display = 'none';
+      }
+    </script>
+  </body>
+</html>
