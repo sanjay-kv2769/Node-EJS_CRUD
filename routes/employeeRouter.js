@@ -1,9 +1,21 @@
 const express = require('express');
 const employeeRouter = express.Router();
 const Employee = require('../models/Employee');
+const multer = require('multer');
+
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'public/upload/');
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  },
+});
+
+var upload = multer({ storage: storage });
 
 // Add Employee
-employeeRouter.post('/add-employee', (req, res) => {
+employeeRouter.post('/add-employee', upload.single('image'), (req, res) => {
   // res.send('Added');
   // res.send(req.body);
   // res.send(req.body.name);
@@ -13,6 +25,7 @@ employeeRouter.post('/add-employee', (req, res) => {
     email: req.body.email,
     phone: req.body.phone,
     bio: req.body.bio,
+    image: req.file.filename,
     createdAt: req.body.createdAt,
   });
   Data.save()
@@ -71,7 +84,6 @@ employeeRouter.get('/delete-employee/:id', (req, res) => {
     })
     .catch((err) => console.log(err));
 });
-
 module.exports = employeeRouter;
 
 // employeeRouter.post('/update-employee', (req, res) => {

@@ -8,7 +8,7 @@ const Employee = require('./models/Employee');
 const methodOverride = require('method-override');
 
 // serving static files
-app.use(express.static('public'));
+app.use(express.static('./public'));
 
 //midlewares
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -34,7 +34,9 @@ mongoose
 app.use('/api/employee', employeeRouter);
 
 app.get('/', (req, res) => {
-  res.render('index');
+  Employee.find().then((data) => {
+    res.render('index', { data: data });
+  });
 });
 
 app.get('/addemployee', (req, res) => {

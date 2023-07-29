@@ -12,7 +12,9 @@
       integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="css/styles">
     <style>
+      
       html,
       body {
         min-height: 100%;
@@ -191,7 +193,7 @@
   <body>
     <%- include('partials/header') %>
     <div class="testbox">
-      <form action="/api/employee/add-employee" method="POST">
+      <form action="/api/employee/add-employee" method="POST" enctype="multipart/form-data">
         <div class="banner">
           <h1>Add Employee</h1>
         </div>
@@ -218,6 +220,10 @@
           <div class="item">
             <label for="bio">Bio<span>*</span></label>
             <input id="bio" type="text" name="bio" required />
+          </div>
+          <div class="item">
+            <label for="image">Upload image<span>*</span></label>
+            <input id="image" type="file" name="image" required />
           </div>
         </div>
 

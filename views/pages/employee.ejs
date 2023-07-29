@@ -23,7 +23,8 @@
         <% data.forEach((employee)=>{ %>
         <div class="w3-col l3 m6 w3-margin-bottom">
           <div class="w3-card">
-            <img src="/images/user.jpg" alt="Dan" style="width: 100%" />
+            <!-- <img src="/images/user.jpg" alt="Dan" style="width: 100%" /> -->
+            <img src="/upload/<%= employee.image %>" alt="Dan" style="width: 100%" />
             <div class="w3-container">
               <h3><%= employee.name %></h3>
               <p class="w3-opacity"><%= employee.email %></p>
