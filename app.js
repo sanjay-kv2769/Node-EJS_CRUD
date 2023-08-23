@@ -32,6 +32,7 @@ mongoose
 
 // routes
 app.use('/api/employee', employeeRouter);
+app.use('/api/user', userRouter);
 
 app.get('/', (req, res) => {
   Employee.find().then((data) => {
